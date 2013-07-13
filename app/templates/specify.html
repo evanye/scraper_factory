@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+		<link href='http://fonts.googleapis.com/css?family=Fauna+One' rel='stylesheet' type='text/css'>
+		<title>Scraper Factory</title>
+
+  	<script src="static/js/jquery-2.0.3.js"></script>	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
+	
+	<script> 
+		$(document).ready(function(){
+			$('#urlForm').animate({opacity:'0'},0);
+			$('#urlForm').animate({opacity:'0'},2000);
+			$('#getInput').animate({width:'500px', height:'160px'},1000);
+			$('#urlForm').animate({opacity:'1'},2000);
+		});
+		function placeWelcome() {
+			document.getElementById('scraper_mainContent').innerHTML = "wheeee!";
+		}
+		</script> 
+	</head>
+
+	
+	<body>
+		<div id="scraper_indexHeader">
+			<img src="../static/img/logo.png" alt="Scraper Factory">
+		</div>
+		<div id='scraper_mainContent'>
+			<div id='getInput' style="background:#CCC;padding:10px;width:600px;height:260px">				
+				<form name="urlForm" id="urlForm" action="splash.html" onclick="clicked()" method="get">
+					<p> Enter website: </p>
+					<input type="text" name="url" size="50"><br>	
+					<br />
+					<input id="button" type="submit" value="Scrape!">
+			</form>
+			</div>
+		</div>
+		
+	</body>
+	
+	
+</html>
