@@ -10,7 +10,7 @@ class Scraper(db.Model):
     dataset = db.relationship('Data', backref = 'dataset', lazy = 'dynamic')
 
     def set_params(self, param_hash):
-        self.params = json.dumps(param_list)
+        self.params = json.dumps(param_hash)
 
     def get_params(self):
         return json.loads(self.params)
