@@ -11,9 +11,16 @@ dog_url2 = "http://www.petfinder.com/dogs/bringing-a-dog-home/facts-about-new-do
 bay_area_url = "http://www.buzzfeed.com/nataliemorin/26-awesome-things-the-bay-area-does-right"
 # produceObjects(html, ['h2'],["span.buzz_superlist_number_inline"], True, "BAY_AREA_AWESOME_FACT")
 
-html = urllib2.urlopen(cat_url).read()
 
-
+def crawl(url, params):
+	html = urllib2.urlopen(url).read()
+	data = {}
+	for item in params:
+		"a|class1|class2|,,," = params[item]
+		html_class = params[item].split('|')[0]
+		classes = params[item].split('|')[1:]
+		data.extend(produceObjects(html, html_class, classes, classes.length == 0, item))
+	return data
 
 def produceObjects(html, html_class, classes, isCSS, name):
 	ans = []
