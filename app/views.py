@@ -29,8 +29,8 @@ def slide2():
         return render_template('slide2.html', url = url, name = name, external_html = html)
     elif request.method == 'POST':
         url = request.form['url']
-        name = request.form['name']
-        
+        NAME = request.form['name']
+
         param_list = {}
         value_list = {}
         print request.form
@@ -49,7 +49,7 @@ def slide2():
         for key in param_list:
           params[param_list[key]] = value_list[key]
         print params
-        new_scraper = Scraper(url = url, name = name)
+        new_scraper = Scraper(url = url, name = NAME)
         new_scraper.set_params(params)
 
         db.session.add(new_scraper)

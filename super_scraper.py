@@ -20,7 +20,7 @@ summer_url = "http://parentingteens.about.com/od/teenculture/a/funteenstodo.htm"
 # produceObjects(urllib2.urlopen(summer_url).read(), ['li'], "", [], False, "SUMMER_FACT")
 craigslist_url = "http://sfbay.craigslist.org/bka/" # ISSUE WITH WEBSITE KNOWING IM A BOT
 # produceObjects(urllib2.urlopen(req).read(), [], "pen/bks", [], False, "CRAIGSLIST_POST") # note simplicity 
-hknews_url = "https://news.ycombinator.com/" # WORKS WELL 
+hknews_url = "https://news.ycombinator.com" # WORKS WELL 
 # produceObjects(urllib2.urlopen(hknews_url).read(), [], "http://", [], False, "HKNEWS_POST") 
 
 
@@ -37,12 +37,12 @@ def crawl(url, params):
 		#"a|class1|class2|,,," = params[item]
 		html_class = params[item].split('|')[0]
 		classes = params[item].split('|')[1:]
-		data.extend(produceObjects(html, html_class, classes, classes.length == 0, item))
+		myhref = 'http://' if (url == hknews_url) else ''
+		data[item] = produceObjects(html, html_class, myhref, classes, len(classes) == 0, item)
 	return data
 
 def produceObjects(html, html_class, myhref, classes, isCSS, name):
 	ans = []
-	dict_ans = {}
 	soup = BeautifulSoup(html)
 	sentence = ""
 	if myhref is not "":
@@ -83,10 +83,5 @@ def produceObjects(html, html_class, myhref, classes, isCSS, name):
 						else:
 							if len(string) > 4:
 								sentence += string 
-	dict_ans[name] = ans
-	return dict_ans
-
-objs = produceObjects(urllib2.urlopen(hknews_url).read(), [], "http://", [], False, "HKNEWS_POST") # note simplicity 
-print objs
-#crawl(cat_url, #{params!})
+	return ans
 				

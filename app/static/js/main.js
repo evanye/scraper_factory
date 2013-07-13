@@ -25,7 +25,7 @@ function appendForm(element, type, classes){
   var param_input = $(document.createElement('input'));
   param_input.attr({
     name: 'param' + INDEX,
-    class: 'id',
+    class: 'jsonBox',
     type: 'text'
   });
 
@@ -38,7 +38,7 @@ function appendForm(element, type, classes){
   value_input.attr({
     name: 'value' + INDEX,
     type: 'hidden', 
-    value: type + class_value,
+    value: type + class_value
   });
 
   div.append(param_input);

@@ -28,7 +28,7 @@
 	border-radius: 15px;
 }
 #jsonBox{
-	/*display: inline; */
+	display: inline;
 }
 #scraper_header {
 	width: auto;

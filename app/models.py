@@ -21,7 +21,7 @@ class Scraper(db.Model):
 class Data(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     timestamp = db.Column(db.DateTime, index = True)
-    data = db.Column(db.String(4096))
+    data = db.Column(db.String(100000))
     scraper = db.Column(db.Integer, db.ForeignKey('scraper.id'))
 
     def set_data(self, data_hash):
@@ -31,4 +31,4 @@ class Data(db.Model):
         return json.loads(self.data)
 
     def __repr__(self):
-        return "<DataSet: name {0}, time {1}, data {2}".format(self.scraper.name, self.timestamp, self.data)
+        return "<DataSet: name {0}, time {1}, data {2}".format(self.scraper, self.timestamp, self.data)
