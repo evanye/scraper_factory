@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="static/css/styles.css">
+		<link rel="stylesheet" type="text/css" href="../static/css/styles.css">
 		<title>Scraper Factory</title>		
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 		<script src="static/js/jquery-2.0.3.js"></script>
@@ -19,32 +19,34 @@
 			</div>
 			<div id="scraper_json" style="text-align:left">
 				<form id="json">
+					<input type="text" name="firstname" size="20" value="First Name"><p class="value">John</p>
+						<br/>
+					<input type="text" name="lastname" size="20" value="Last Name"><p class="value">Smith</p>
+						<br/>
+					<input type="text" name="age" size="20" value="Age"><p class="value">25</p>
+						<br/>
+					<input type="text" name="address" size="20" value="Address">
+							<br/>
+						<input type="text" name="streetAddress" size="20" value="Street Address"><p class="value">21 2nd Street</p>
+							<br/>
+						<input type="text" name="city" size="20" value="City"><p class="value">New York</p>
+							<br/>
+						<input type="text" name="state" size="20" value="State"><p class="value">NY</p>
+							<br/>
+						<input type="text" name="postalCode" size="20" value="Postal Code"><p class="value">10021</p>
+							<br/>
+							
+					<input type="text" name="phoneNumbers" size="20" value="Phone Numbers">
+						<br/>
+						<input type="text" name="type" size="20" value="Type"><p class="value">Home</p>
+							<br/>
+						<input type="text" name="type" size="20" value="Number"><p class="value">772-867-5309</p>
+							<br/>
+						<input type="text" name="type" size="20" value="Type"><p class="value">Cell</p>
+							<br/>
+						<input type="text" name="type" size="20" value="Number"><p class="value">778-928-1292</p>
+							<br/>
 				
-				<div id="firstName" class="main"> <p class="id">First Name</p>: <p class="value">John</p> </div>
-				<div id="lastName" class="main"> <p class="id">Last Name</p>: <p class="value">Smith</p> </div>
-				<div id="age" class="main"> <p class="id">Age</p>: <p class="value">25</p> </div>
-				<div id="address" class="main"> <p class="id">Address</p>:
-					<div id="innerAddress" class="inner"> 
-						<p class="inner_id">Street Address</p>: <p class="inner_value">21 2nd Street</p>
-						<p class="inner_id">City</p>: <p class="inner_value">New York</p>
-						<p class="inner_id">State</p>: <p class="inner_value">NY</p>
-						<p class="inner_id">Postal Code</p>: <p class="inner_value">10021</p>
-					</div>
-				</div>
-				<p></p>
-				<div id="phoneNumbers" class="main">
-					<p>PhoneNumbers: </p>
-					<div id="innerNumbers" class="inner"> 
-						<div id="innerNumbers1" class="inner"> 
-							<p class="inner_id">Type</p>: <p class="inner_value">Home</p>
-							<p class="inner_id">Number</p>: <p class="inner_value">212 555-1234</p>
-						</div>
-						<div id="innerNumbers2" class="inner"> 
-							<p class="inner_id">Type</p>: <p class="inner_value">fax</p>
-							<p class="inner_id">Number</p>: <p class="inner_value">646 555-4567</p>
-						</div> 
-					</div>
-				</div>
 				</form>
 			</div>
 			
