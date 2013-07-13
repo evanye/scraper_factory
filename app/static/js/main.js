@@ -12,22 +12,41 @@ $(document).ready(function(){
       return;
 
     var classes = getCss(element);
-    appendForm(type, classes);
+    appendForm(element, type, classes);
     highlight(type, classes);
     INDEX++;
   });
 });
 
-function appendForm(type, classes){
-  $('<input>').attr({
+function appendForm(element, type, classes){
+  var div = $(document.createElement('div'));
+  div.attr('class', 'main');
+
+  var param_input = $(document.createElement('input'));
+  param_input.attr({
     id: 'param' + INDEX,
+    class: 'id',
     type: 'text'
-  }).appendTo('form');
-  $('<input>').attr({
+  });
+
+  var value_view = $(document.createElement('p'));
+  value_view.attr('class', 'value');
+  value_view.text(element.text().substr(0,15) + '...');
+
+  var value_input = $(document.createElement('input'));
+  var class_value = classes.length > 0 ? '|' + classes.join('|') : '';
+  value_input.attr({
     id: 'value' + INDEX,
-    type: 'hidden',
-    value: type + '|' + classes.join('|')
-  }).appendTo('form');
+    type: 'hidden', 
+    value: type + class_value,
+  });
+
+  div.append(param_input);
+  div.append(value_view);
+  div.append(value_input);
+  div.appendTo('form');
+
+  param_input.focus();
 }
 
 function highlight(type, classes){
