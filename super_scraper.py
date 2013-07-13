@@ -16,7 +16,8 @@ html = urllib2.urlopen(cat_url).read()
 
 
 def produceObjects(html, html_class, classes, isCSS, name):
-	ans = {}
+	ans = []
+	dict_ans = {}
 	soup = BeautifulSoup(html)
 	sentence = ""
 	if isCSS:
@@ -29,7 +30,7 @@ def produceObjects(html, html_class, classes, isCSS, name):
 				m2 =  re.findall(r'<[a-zA-Z0-9]*\b[^>]*>(.*)</[a-zA-Z0-9]*> ([a-zA-Z0-9 .%]*)', s)
 				mylist2 = [x for x in m2 if not x is '']
 				for s2 in mylist2:
-					ans[s2[0] + " " + s2[1]] = name
+					ans.append(s2[0] + " " + s2[1])
 
 	if not isCSS:
 		texts = soup.find_all(html_class[0]) #just html, assuming not css
@@ -45,12 +46,13 @@ def produceObjects(html, html_class, classes, isCSS, name):
 						if string[-1:] is '.':
 							sentence += string
 							if len(sentence) > 4:
-								ans[str(sentence)] = name
+								ans.append(str(sentence))
 								sentence = ""
 						else:
 							if len(string) > 4:
 								sentence += string 
-	return ans
+	dict_ans[name] = ans
+	return dict_ans
 
 objs = produceObjects(html, ['li'], [], False, "CAT_FACT")
 print objs
