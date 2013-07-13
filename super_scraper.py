@@ -3,20 +3,20 @@ import urllib2
 import re
 
 cat_url = "http://facts.randomhistory.com/interesting-facts-about-cats.html"
-# produceObjects(html, ['li'], [], False)
+# produceObjects(html, ['li'], [], False, "CAT_FACT")
 dog_url = "http://facts.randomhistory.com/2009/02/15_dogs.html"
-# produceObjects(html, ['li'], [], False)
+# produceObjects(html, ['li'], [], False, "DOG_FACT")
 dog_url2 = "http://www.petfinder.com/dogs/bringing-a-dog-home/facts-about-new-dog/"
-# produceObjects(html, ['p'], [], False)
+# produceObjects(html, ['p'], [], False, "DOG_FACT")
 bay_area_url = "http://www.buzzfeed.com/nataliemorin/26-awesome-things-the-bay-area-does-right"
-# produceObjects(html, ['h2'],["span.buzz_superlist_number_inline"], True)
+# produceObjects(html, ['h2'],["span.buzz_superlist_number_inline"], True, "BAY_AREA_AWESOME_FACT")
 
 html = urllib2.urlopen(cat_url).read()
 
 
 
-def produceObjects(html, html_class, classes, isCSS):
-	ans = []
+def produceObjects(html, html_class, classes, isCSS, name):
+	ans = {}
 	soup = BeautifulSoup(html)
 	sentence = ""
 	if isCSS:
@@ -29,7 +29,7 @@ def produceObjects(html, html_class, classes, isCSS):
 				m2 =  re.findall(r'<[a-zA-Z0-9]*\b[^>]*>(.*)</[a-zA-Z0-9]*> ([a-zA-Z0-9 .%]*)', s)
 				mylist2 = [x for x in m2 if not x is '']
 				for s2 in mylist2:
-					ans.append(s2[0] + " " + s2[1])
+					ans[s2[0] + " " + s2[1]] = name
 
 	if not isCSS:
 		texts = soup.find_all(html_class[0]) #just html, assuming not css
@@ -45,13 +45,13 @@ def produceObjects(html, html_class, classes, isCSS):
 						if string[-1:] is '.':
 							sentence += string
 							if len(sentence) > 4:
-								ans.append(str(sentence))
+								ans[str(sentence)] = name
 								sentence = ""
 						else:
 							if len(string) > 4:
 								sentence += string 
 	return ans
 
-objs = produceObjects(html, ['li'], [], False)
+objs = produceObjects(html, ['li'], [], False, "CAT_FACT")
 print objs
 				
