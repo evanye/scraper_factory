@@ -3,33 +3,36 @@ import urllib2
 import re
 
 cat_url = "http://facts.randomhistory.com/interesting-facts-about-cats.html"
+# produceObjects(html, ['li'], [], False)
 dog_url = "http://facts.randomhistory.com/2009/02/15_dogs.html"
+# produceObjects(html, ['li'], [], False)
 dog_url2 = "http://www.petfinder.com/dogs/bringing-a-dog-home/facts-about-new-dog/"
+# produceObjects(html, ['p'], [], False)
 bay_area_url = "http://www.buzzfeed.com/nataliemorin/26-awesome-things-the-bay-area-does-right"
+# produceObjects(html, ['h2'],["span.buzz_superlist_number_inline"], True)
 
-html = urllib2.urlopen(bay_area_url).read()
+html = urllib2.urlopen(cat_url).read()
 
 
 
-def produceObjects(html, html_classes, classes, isCSS):
+def produceObjects(html, html_class, classes, isCSS):
 	ans = []
 	soup = BeautifulSoup(html)
 	sentence = ""
 	if isCSS:
-		css_texts = soup.select(classes[0]) #css 
-		raw_texts = soup(html_classes[0], text = re.compile(r'<[a-zA-Z0-9]*\b[^>]*>(.*?)</[a-zA-Z0-9]*>'))
-		for text in css_texts:
-			for string in raw_texts: 
-				string_elem = string.encode('utf-8')
-				text_elem = text.encode('utf-8')
-				m = re.findall(r'<[a-zA-Z0-9]*\b[^>]*>(.*?)</[a-zA-Z0-9]*>', text_elem)
-				mylist = [x for x in m if not x is '']
-				mylist2 = [y for y in n if not y is '']
-				for s in mylist:
-					for t in mylist2:
-						ans.append(s + " " + t)
+		raw_texts = soup(html_class[0])
+		for string in raw_texts: 
+			string_elem = string.encode('utf-8')
+			m = re.findall(r'<[a-zA-Z0-9]*\b[^>]*>(.*)</[a-zA-Z0-9]*>[a-zA-Z0-9]*', string_elem)
+			mylist = [x for x in m if not x is '']
+			for s in mylist:
+				m2 =  re.findall(r'<[a-zA-Z0-9]*\b[^>]*>(.*)</[a-zA-Z0-9]*> ([a-zA-Z0-9 .%]*)', s)
+				mylist2 = [x for x in m2 if not x is '']
+				for s2 in mylist2:
+					ans.append(s2[0] + " " + s2[1])
+
 	if not isCSS:
-		texts = soup.find_all(html_classes[0]) #just html, assuming not css
+		texts = soup.find_all(html_class[0]) #just html, assuming not css
 		for text in texts:
 			#for deep_text in text.find_all(demarkers[1]):
 			split_texts = re.split('<[a-z/]*>', text.encode('utf-8'))
@@ -49,6 +52,6 @@ def produceObjects(html, html_classes, classes, isCSS):
 								sentence += string 
 	return ans
 
-objs = produceObjects(html, ['h2'],["span.buzz_superlist_number_inline"], True)
+objs = produceObjects(html, ['li'], [], False)
 print objs
 				
