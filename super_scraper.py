@@ -5,22 +5,33 @@ import re
 #NOTABLE ISSUE: DOES NOT SUPPORT SOME TYPES OF CHARACTERS 
 
 cat_url = "http://facts.randomhistory.com/interesting-facts-about-cats.html" # WORKS WELL
-# produceObjects(html, ['li'], [], False, "CAT_FACT")
+# produceObjects(html, ['li'], "", [], False, "CAT_FACT")
 dog_url = "http://facts.randomhistory.com/2009/02/15_dogs.html" # WORKS WELL
-# produceObjects(html, ['li'], [], False, "DOG_FACT")
+# produceObjects(html, ['li'], "", [], False, "DOG_FACT")
 dog_url2 = "http://www.petfinder.com/dogs/bringing-a-dog-home/facts-about-new-dog/" # WORKS WELL
-# produceObjects(html, ['p'], [], False, "DOG_FACT")
+# produceObjects(html, ['p'], "", [], False, "DOG_FACT")
 bay_area_url = "http://www.buzzfeed.com/nataliemorin/26-awesome-things-the-bay-area-does-right" # WORKS WELL
-# produceObjects(html, ['h2'],["span.buzz_superlist_number_inline"], True, "BAY_AREA_AWESOME_FACT")
+# produceObjects(html, ['h2'], "", ["span.buzz_superlist_number_inline"], True, "BAY_AREA_AWESOME_FACT")
 mac_url = "http://www.buzzfeed.com/jessicamisener/31-cool-things-to-do-with-the-apple-logo-on-your-mac" #WORKS WELL
-# produceObjects(html, ['h2'],["span.buzz_superlist_number_inline"], True, "MAC_BUZZFEED_FACT")
+# produceObjects(html, ['h2'], "", ["span.buzz_superlist_number_inline"], True, "MAC_BUZZFEED_FACT")
 python_url = "http://docs.python.org/2/library/urllib2.html"
 # doesn't really work 
 summer_url = "http://parentingteens.about.com/od/teenculture/a/funteenstodo.htm" # WORKS WELL 
-# produceObjects(urllib2.urlopen(summer_url).read(), ['li'],[], False, "SUMMER_FACT")
+# produceObjects(urllib2.urlopen(summer_url).read(), ['li'], "", [], False, "SUMMER_FACT")
+craigslist_url = "http://sfbay.craigslist.org/bka/" # ISSUE WITH WEBSITE KNOWING IM A BOT
+# produceObjects(urllib2.urlopen(req).read(), [], "pen/bks", [], False, "CRAIGSLIST_POST") # note simplicity 
+hknews_url = "https://news.ycombinator.com/" # WORKS WELL 
+# produceObjects(urllib2.urlopen(hknews_url).read(), [], "http://", [], False, "HKNEWS_POST") 
+
+
+#req = urllib2.Request(craigslist_url)
+#req.add_header('User-Agent', "Mozilla/5.0 (X11; U; Linux i686) Gecko/20071127 Firefox/2.0.0.11")
 
 def crawl(url, params):
-	html = urllib2.urlopen(url).read()
+	req = urllib2.Request(url)
+	req.add_header('User-Agent', "Mozilla/5.0 (X11; U; Linux i686) Gecko/20071127 Firefox/2.0.0.11")
+
+	html = urllib2.urlopen(req).read()
 	data = {}
 	for item in params:
 		#"a|class1|class2|,,," = params[item]
@@ -29,12 +40,18 @@ def crawl(url, params):
 		data.extend(produceObjects(html, html_class, classes, classes.length == 0, item))
 	return data
 
-def produceObjects(html, html_class, classes, isCSS, name):
+def produceObjects(html, html_class, myhref, classes, isCSS, name):
 	ans = []
 	dict_ans = {}
 	soup = BeautifulSoup(html)
 	sentence = ""
-	if isCSS:
+	if myhref is not "":
+		links = soup.find_all(href=re.compile(myhref))
+		for link in links:
+			link = link.encode('utf-8')
+			ans.append(link)
+
+	elif isCSS:
 		raw_texts = soup(html_class[0])
 		for string in raw_texts: 
 			string_elem = string.encode('utf-8')
@@ -47,7 +64,7 @@ def produceObjects(html, html_class, classes, isCSS, name):
 				for s2 in mylist2:
 					ans.append(s2[0] + " " + s2[1])
 
-	if not isCSS:
+	else:
 		texts = soup.find_all(html_class[0]) #just html, assuming not css
 		for text in texts:
 			#for deep_text in text.find_all(demarkers[1]):
@@ -69,8 +86,7 @@ def produceObjects(html, html_class, classes, isCSS, name):
 	dict_ans[name] = ans
 	return dict_ans
 
-
-objs = produceObjects(urllib2.urlopen(summer_url).read(), ['li'],[], False, "SUMMER_FACT") # note simplicity 
+objs = produceObjects(urllib2.urlopen(hknews_url).read(), [], "http://", [], False, "HKNEWS_POST") # note simplicity 
 print objs
 #crawl(cat_url, #{params!})
 				
