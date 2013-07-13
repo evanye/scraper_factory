@@ -1,0 +1,59 @@
+<html>
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+	<link href='http://fonts.googleapis.com/css?family=Fauna+One' rel='stylesheet' type='text/css'>
+
+	
+	<script> 
+		// Animate the console
+		$(document).ready(function(){
+			$('#info').animate({opacity:'0'},0);
+			$('#line1').animate({opacity:'0'},0);
+			$('#apiName').animate({opacity:'0'},0);
+			$('#consoleInput').animate({opacity:'0'},0);
+			$('#submitLink').animate({opacity:'0'},0);
+			$('#console').animate({opacity:'1'},1200);
+			$('#console').animate({height:'300px'},1000);
+			$('#info').animate({opacity:'0'},2400);
+			$('#info').animate({opacity:'1'},1200);
+			$('#apiName').animate({opacity:'0'},3700);
+			$('#apiName').animate({opacity:'1'},1200);
+			$('#line1').animate({opacity:'0'},4900);
+			$('#line1').animate({opacity:'1'},1200);
+			$('#consoleInput').animate({opacity:'0'},4900);
+			$('#consoleInput').animate({opacity:'1'},1200);
+			$('#submitLink').animate({opacity:'0'},6000);
+			$('#submitLink').animate({opacity:'1'},1200);
+			setActive();
+		});
+		
+		function setActive() {
+			document.getElementById('consoleInput').focus();
+		}
+	</script> 
+	
+	<style>
+		
+	</style>
+
+</head>
+
+<body>
+	<div id="scraper_indexHeader">
+			<a href="index.html"><img src="../static/img/logo.png" alt="Scraper Factory"></a>
+	</div>
+	<div id="console">
+		<p id="info" class="notice"> We are now scraping the specified website for data!</p>
+		<br/>
+		<p id="apiName" class="notice">In the meantime, specify a name for your new API: </p>
+		<br/>
+		<br/>
+		<p id="line1" class="notice">user@scraperFactory:/$</p>
+		<input type="text" id="consoleInput">
+		<a id="submitLink" href="slide2.html" class="notice"> Submit</a>
+	</div>
+
+
+</body>
+</html>
