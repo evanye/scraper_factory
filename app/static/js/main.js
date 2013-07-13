@@ -50,7 +50,7 @@ function appendForm(element, type, classes){
 }
 
 function highlight(type, classes){
-  var class_str = classes.length > 0 ? '.' + classes.join(' .') + ' ' : '';
+  var class_str = classes.length > 0 ? '.' + classes.reverse().join(' .') + ' ' : '';
   $(class_str + type).each(function(){
     $(this).css('background', HIGHLIGHT_COLORS[INDEX]);
   });
