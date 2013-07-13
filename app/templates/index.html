@@ -4,10 +4,18 @@
 		<link href='http://fonts.googleapis.com/css?family=Fauna+One' rel='stylesheet' type='text/css'>
 		<title>Scraper Factory</title>
 
-  	<script src="static/js/jquery-2.0.3.js"></script>
-		<script> 
+  	<script src="static/js/jquery-2.0.3.js"></script>	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
+	
+	<script> 
 		$(document).ready(function(){
+			$('#scraper_indexHeader').animate({height:'0px', 'padding-top':'0px'},0);
+			$('#scraper_indexHeader').animate({height:'0px'},100);
+			$('#scraper_indexHeader').animate({height:'120px', 'padding-top':'60px'},1000);
+			$('#getInput').animate({height:'0px'},1200);
 			$('#getInput').animate({height:'170px'},1000);
+			
 		});
 		</script> 
 	</head>
@@ -15,15 +23,15 @@
 	
 	<body>
 		<div id="scraper_indexHeader">
-			<img src="static/img/logo.png" alt="Scraper Factory">
+			<img src="../static/img/logo.png" alt="Scraper Factory">
 		</div>
 		<div id='scraper_mainContent'>
 			<div id='getInput' style="height:0px;background:#CCC;padding:10px;">
 				<p> Enter website: </p>
-				<form name="urlForm" action="slide2.html" onclick="clicked()" method="get">
+				<form name="urlForm" action="splash.html" onclick="clicked()" method="get">
 					<input type="text" name="url" size="50"><br>	
 					<br />
-					<input type="submit" value="Scrape!">
+					<input id="button" type="submit" value="Scrape!">
 			</form>
 			</div>
 		</div>
