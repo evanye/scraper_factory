@@ -1,7 +1,7 @@
 <html>
 <head>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+	<script src="static/js/jquery-2.0.3.js"></script>
+	<link rel="stylesheet" type="text/css" href="static/css/styles.css">
 	<link href='http://fonts.googleapis.com/css?family=Fauna+One' rel='stylesheet' type='text/css'>
 
 	
@@ -26,11 +26,17 @@
 			$('#submitLink').animate({opacity:'0'},6000);
 			$('#submitLink').animate({opacity:'1'},1200);
 			setActive();
+
+			$('#submitLink').click(function(){
+				$('form').submit()
+			});
 		});
 		
 		function setActive() {
 			document.getElementById('consoleInput').focus();
 		}
+
+
 	</script> 
 	
 	<style>
@@ -44,14 +50,17 @@
 			<a href="index.html"><img src="../static/img/logo.png" alt="Scraper Factory"></a>
 	</div>
 	<div id="console">
-		<p id="info" class="notice"> We are now scraping the specified website for data!</p>
-		<br/>
-		<p id="apiName" class="notice">In the meantime, specify a name for your new API: </p>
-		<br/>
-		<br/>
-		<p id="line1" class="notice">user@scraperFactory:/$</p>
-		<input type="text" id="consoleInput">
-		<a id="submitLink" href="slide2.html" class="notice"> Submit</a>
+		<form action="slide2.html" method="get">
+			<p id="info" class="notice"> We are now scraping the specified website for data!</p>
+			<br/>
+			<p id="apiName" class="notice">In the meantime, specify a name for your new API: </p>
+			<br/>
+			<br/>
+			<p id="line1" class="notice">user@scraperFactory:/$</p>
+			<input type="text" id="consoleInput" name="name"/>
+			<input type="hidden" name="url" value="{{url}}" />
+			<a id="submitLink" href="#" class="notice"> Submit</a>
+		</form>
 	</div>
 
 
