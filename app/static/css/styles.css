@@ -1,4 +1,9 @@
 
+#getInput{
+	width: 500px;
+	margin: 0 auto;
+	margin-top: 20px;
+}
 #scraper_header {
 	width: auto;
 	height: 60px;
@@ -49,10 +54,38 @@ body {
 	background: #fff;
 	border: 1px solid black;
 	float: left;
+	overflow: scroll;
 }
 
 p {
-	font-family: 'Fauna One', serif;
+	font-family: 'Fauna One', serif; 
+}
+.main:hover { background:#00ffcc; }
+.main { 
+	font-family: Courier New; 
+	margin-bottom: 4px;
+}
+.id {
+	margin: 0px; 
+	display: inline;
+}
+.id:hover { background:#00ff00; }
+.inner{
+	margin: 0px;
+	margin-left: 20px;
+}
+.inner_id{
+	margin: 0px;
+	margin-bottom: 4px; 
+	display: inline;
+}
+.inner_value{
+	margin: 0px;
+	margin-bottom: 4px; 
+}
+.value{
+	margin: 0px; 
+	display: inline;
 }
 
 

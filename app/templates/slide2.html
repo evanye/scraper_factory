@@ -1,27 +1,62 @@
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="static/css/styles.css">
+		<link rel="stylesheet" type="text/css" href="../static/css/styles.css">
 		<title>Scraper Factory</title>
-		<script src="testScript.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Fauna+One' rel='stylesheet' type='text/css'>
 		
-		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-  
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		
+		<script>
+			$(document).ready(function() {
+				$("div").click(function(event) {
+					alert(event.target.id);
+				});
+			});
+		</script>
+			  
 	</head>
 	
 	
 	<body>
 		<div id='scraper_header'>
-			<a href="index.html"><img style="float:left; margin-left:20px" src="static/img/logoSmall.png" alt="Scraper Factory" size="50%"></a>
+			<a href="index.html"><img style="float:left; margin-left:20px" src="../static/img/logoSmall.png" alt="Scraper Factory" size="50%"></a>
 		</div>
 		<div id='scraper_mainContent'>
 			<div id='scraper_pageView'>
 				{{external_html|safe}}
 			</div>
-			<div id='scraper_json'>
-			
+			<div id="scraper_json" style="text-align:left">
+				<form id="json">
+				
+				<div id="firstName" class="main"> <p class="id">First Name</p>: <p class="value">John</p> </div>
+				<div id="lastName" class="main"> <p class="id">Last Name</p>: <p class="value">Smith</p> </div>
+				<div id="age" class="main"> <p class="id">Age</p>: <p class="value">25</p> </div>
+				<div id="address" class="main"> <p class="id">Address</p>:
+					<div id="innerAddress" class="inner"> 
+						<p class="inner_id">Street Address</p>: <p class="inner_value">21 2nd Street</p>
+						<p class="inner_id">City</p>: <p class="inner_value">New York</p>
+						<p class="inner_id">State</p>: <p class="inner_value">NY</p>
+						<p class="inner_id">Postal Code</p>: <p class="inner_value">10021</p>
+					</div>
+				</div>
+				<p></p>
+				<div id="phoneNumbers" class="main">
+					<p>PhoneNumbers: </p>
+					<div id="innerNumbers" class="inner"> 
+						<div id="innerNumbers1" class="inner"> 
+							<p class="inner_id">Type</p>: <p class="inner_value">Home</p>
+							<p class="inner_id">Number</p>: <p class="inner_value">212 555-1234</p>
+						</div>
+						<div id="innerNumbers2" class="inner"> 
+							<p class="inner_id">Type</p>: <p class="inner_value">fax</p>
+							<p class="inner_id">Number</p>: <p class="inner_value">646 555-4567</p>
+						</div> 
+					</div>
+				</div>
+				</form>
 			</div>
+			
 			
 		</div>
 		
