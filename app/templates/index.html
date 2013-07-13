@@ -4,7 +4,8 @@
 		<link href='http://fonts.googleapis.com/css?family=Fauna+One' rel='stylesheet' type='text/css'>
 		<title>Scraper Factory</title>
 
-  	<script src="static/js/jquery-2.0.3.js"></script>	
+  	<script src="static/js/jquery-2.0.3.js"></script>
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 
 	
@@ -14,8 +15,7 @@
 			$('#scraper_indexHeader').animate({height:'0px'},100);
 			$('#scraper_indexHeader').animate({height:'120px', 'padding-top':'60px'},1000);
 			$('#getInput').animate({height:'0px'},1200);
-			$('#getInput').animate({height:'170px'},1000);
-			
+			$('#getInput').animate({height:'260px'},1400);
 		});
 		</script> 
 	</head>
@@ -25,14 +25,17 @@
 		<div id="scraper_indexHeader">
 			<img src="static/img/logo.png" alt="Scraper Factory">
 		</div>
+		
 		<div id='scraper_mainContent'>
-			<div id='getInput' style="height:0px;background:#CCC;padding:10px;">
-				<p> Enter website: </p>
-				<form name="urlForm" action="splash.html" onclick="clicked()" method="get">
-					<input type="text" name="url" size="50"><br>	
-					<br />
-					<input id="button" type="submit" value="Scrape!">
-			</form>
+			<div id='getInput' style="height:0px;width:600px;background:#CCC;padding:10px;">
+				<h3> Welcome! </h3>
+				<form name="urlForm" action="specify.html" onclick="" method="get">
+					<p> Our general web scraper allows you to specify a site you want to scrape, and the text you want to get, 
+					and creates an api for you to access. Our code does the scraping for you!</p>
+					<p> This site is easy to use: just press the 'Begin' button below, type the name of your site in the text
+					box that will appear, and watch in awe as a scraper is created before your eyes! </p>
+					<input id="button" type="submit" value="Begin!">
+				</form>
 			</div>
 		</div>
 		

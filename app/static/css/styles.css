@@ -22,8 +22,13 @@
 }
 #getInput{
 	width: 500px;
+	height: 170px;
 	margin: 0 auto;
 	margin-top: 20px;
+	border-radius: 15px;
+}
+#jsonBox{
+	/*display: inline; */
 }
 #scraper_header {
 	width: auto;
@@ -51,7 +56,8 @@
 body {
 	margin: 0px; 
 	text-align: center;
-	background: #E6E6E6;
+	background: #E6E6E6;	
+	font-family: 'Fauna One', serif;
 }
 
 #scraper_mainContent {
