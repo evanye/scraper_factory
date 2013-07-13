@@ -30,6 +30,7 @@ def slide2():
     elif request.method == 'POST':
         url = request.form['url']
         name = request.form['name']
+        
         param_list = {}
         value_list = {}
         print request.form
