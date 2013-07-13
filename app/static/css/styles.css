@@ -27,6 +27,9 @@
 	margin-top: 20px;
 	border-radius: 15px;
 }
+#jsonBox{
+	/*display: inline; */
+}
 #scraper_header {
 	width: auto;
 	height: 60px;
