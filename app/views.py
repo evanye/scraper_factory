@@ -35,7 +35,7 @@ def slide2():
       params = {}
       for key in param_list:
         params[param_list[key]] = value_list[key]
-      
+      print params
       new_scraper = Scraper(url = url, name = name)
       new_scraper.set_params(params)
 

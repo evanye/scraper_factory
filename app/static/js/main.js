@@ -24,7 +24,7 @@ function appendForm(element, type, classes){
 
   var param_input = $(document.createElement('input'));
   param_input.attr({
-    id: 'param' + INDEX,
+    name: 'param' + INDEX,
     class: 'id',
     type: 'text'
   });
@@ -36,7 +36,7 @@ function appendForm(element, type, classes){
   var value_input = $(document.createElement('input'));
   var class_value = classes.length > 0 ? '|' + classes.join('|') : '';
   value_input.attr({
-    id: 'value' + INDEX,
+    name: 'value' + INDEX,
     type: 'hidden', 
     value: type + class_value,
   });
@@ -44,7 +44,7 @@ function appendForm(element, type, classes){
   div.append(param_input);
   div.append(value_view);
   div.append(value_input);
-  div.appendTo('form');
+  $('#send').before(div);
 
   param_input.focus();
 }

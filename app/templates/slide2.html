@@ -18,7 +18,9 @@
 				{{external_html}}
 			</div>
 			<div id="scraper_json" style="text-align:left">
-				<form id="json">
+				<form id="json" action='slide2.html' method="post">
+					<input type="hidden" name="url" value="{{name}}">
+					<input type="hidden" name="url" value="{{url}}">
 
 					<!-- <input type="text" name="firstname" size="20" value="First Name"><p class="value">John</p>
 						<br/>
@@ -47,7 +49,7 @@
 							<br/>
 						<input type="text" name="type" size="20" value="Number"><p class="value">778-928-1292</p>
 							<br/> -->
-						<input type="submit" value="Submit">
+						<input type="submit" id= 'send' value="Submit">
 				</form>
 			</div>
 			
