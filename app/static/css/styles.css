@@ -103,3 +103,7 @@ p {
 	float: right;
 	overflow: scroll;
 }
+.value{
+	display:inline;
+	margin-left: 10px;
+}

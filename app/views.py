@@ -1,11 +1,16 @@
 from flask import render_template, request, abort, Markup
 from app import app, db
-from app.models import Scraper
+from app.models import Scraper, Data
 import urllib2
+import simplejson as json
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/specify.html')
+def specify():
+    return render_template('specify.html')
 
 @app.route('/splash.html')
 def splash():
@@ -55,3 +60,9 @@ def slide2():
         db.session.add(new_scraper)
         db.session.commit()
         return render_template('index.html')
+
+@app.route('/api')
+def api():
+    name = request.args.get('name')
+    data = Data.query.join(Scraper).filter(Scraper.name == name).all()[-1]
+    return json.loads(json.dumps(data.data))

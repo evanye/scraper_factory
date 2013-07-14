@@ -34,11 +34,27 @@ def crawl(url, params):
 	html = urllib2.urlopen(req).read()
 	data = {}
 	for item in params:
-		#"a|class1|class2|,,," = params[item]
-		html_class = params[item].split('|')[0]
-		classes = params[item].split('|')[1:]
-		myhref = 'http://' if (url == hknews_url) else ''
-		data[item] = produceObjects(html, html_class, myhref, classes, len(classes) == 0, item)
+		if url[1:-2] in cat_url:
+			data[item] = produceObjects(html, ['li'], "", [], False, item)#produceObjects(html, html_class, myhref, classes, False, item)
+		if url[1:-2] in dog_url:
+			data[item] = produceObjects(html, ['li'], "", [], False, item)
+		if url[1:-2] in dog_url2:
+			data[item] = produceObjects(html, ['p'], "", [], False, item)
+		if url[1:-2] in bay_area_url:
+			data[item] = produceObjects(html, ['h2'], "", ["span.buzz_superlist_number_inline"], True, item)
+		if url[1:-2] in mac_url:
+			data[item] = produceObjects(html, ['h2'], "", ["span.buzz_superlist_number_inline"], True, item)
+		if url[1:-2] in summer_url:
+			data[item] = produceObjects(urllib2.urlopen(summer_url).read(), ['li'], "", [], False, item)
+		if url[1:-2] in hknews_url:
+			data[item] = produceObjects(urllib2.urlopen(hknews_url).read(), [], "http://", [], False, item) 
+		else:
+			html_class = params[item].split('|')[0]
+			classes = params[item].split('|')[1:]
+			myhref = 'http[s]*://' if (url == hknews_url) else ''
+			if html_class == 'FONT':
+				html_class = 'li'
+			data[item] = produceObjects(html, [html_class], "", [], False, item)
 	return data
 
 def produceObjects(html, html_class, myhref, classes, isCSS, name):
@@ -83,5 +99,6 @@ def produceObjects(html, html_class, myhref, classes, isCSS, name):
 						else:
 							if len(string) > 4:
 								sentence += string 
+	print ans
 	return ans
 				
